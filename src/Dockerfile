@@ -11,6 +11,5 @@ COPY . /usr/src/app
 
 EXPOSE 8080
 
-ENTRYPOINT ["python3"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "openapi_server.app:app"]
 
-CMD ["-m", "openapi_server"]

@@ -1,19 +1,8 @@
 #!/usr/bin/env python3
 
-import connexion
+from openapi_server.app import connexion_app
 
-from openapi_server import encoder
+# For local debugging only, Dockerfile uses app.py
+if __name__ == "__main__":
+    connexion_app.run(port=8080, host="0.0.0.0", debug=False)
 
-
-def main():
-    app = connexion.App(__name__, specification_dir='./openapi/')
-    app.app.json_encoder = encoder.JSONEncoder
-    app.add_api('openapi.yaml',
-                arguments={'title': 'CV Download Service'},
-                pythonic_params=True)
-
-    app.run(port=8080)
-
-
-if __name__ == '__main__':
-    main()
