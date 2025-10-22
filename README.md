@@ -9,4 +9,5 @@ Have some containerization installed (Docker, Podman, ...)
   - FastAPI (newer) `docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate -i /local/openapi.yml -g python-fastapi -o /local/src`
   - OR
   - Flask (mature) `docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate -i /local/openapi.yml -g python-flask -o /local/src`
+3) Implement the stubbed controller functions in `src/openapi_server/controllers/*.py`
 
