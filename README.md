@@ -13,7 +13,7 @@ Have some containerization installed (Docker, Podman, ...)
 4) Build and run the Microservice as container:
   - `cd src`
   - `docker build -t cv-backend .`
-  - `docker run -p 8080:8080 cv-backend`
+  - `docker run -e KEYCLOAK_URL=https://keycloak.me/realms/myrealm -e KEYCLOAK_CLIENT_ID=cv-service -p 8080:8080 cv-backend`
   - Open [http://localhost:8080/ui/](http://localhost:8080/ui/) in a WebBrowser
-  - Test API endpoint, e.g. `curl -o john_doe_cv.pdf "http://localhost:8080/cv?firstName=John&lastName=Doe"`
+  - Test API endpoint, e.g. `curl -o john_doe_cv.pdf "http://localhost:8080/health"`
 

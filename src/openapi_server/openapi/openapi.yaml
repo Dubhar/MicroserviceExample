@@ -43,12 +43,39 @@ paths:
               schema:
                 $ref: "#/components/schemas/_cv_get_404_response"
           description: CV not found
+      security:
+      - BearerAuth: []
       summary: Download CV PDF
       tags:
       - cv
       x-openapi-router-controller: openapi_server.controllers.cv_controller
+  /health:
+    get:
+      operationId: health_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_health_get_200_response"
+          description: Service is up
+      security: []
+      summary: Public health check
+      tags:
+      - health
+      x-openapi-router-controller: openapi_server.controllers.health_controller
 components:
   schemas:
+    _health_get_200_response:
+      example:
+        status: ok
+      properties:
+        status:
+          example: ok
+          title: status
+          type: string
+      title: _health_get_200_response
+      type: object
     _cv_get_404_response:
       example:
         error: CV not found for John Doe

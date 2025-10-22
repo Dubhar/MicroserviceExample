@@ -2,6 +2,7 @@
 
 import connexion
 
+from openapi_server.services.auth_service import token_auth
 from openapi_server import encoder
 
 
@@ -10,10 +11,12 @@ def main():
     app.app.json_encoder = encoder.JSONEncoder
     app.add_api('openapi.yaml',
                 arguments={'title': 'CV Download Service'},
-                pythonic_params=True)
+                pythonic_params=True,
+                security=[{"BearerAuth": token_auth}])
 
     app.run(port=8080)
 
 
 if __name__ == '__main__':
     main()
+

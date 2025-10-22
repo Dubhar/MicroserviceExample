@@ -42,4 +42,23 @@ paths:
                   error:
                     type: string
                     example: "CV not found for John Doe"
+      security:
+        - BearerAuth: []
+  /health:
+    get:
+      tags:
+        - health
+      summary: Public health check
+      responses:
+        "200":
+          description: Service is up
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ok"
+      security: []
 
