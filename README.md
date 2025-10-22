@@ -10,4 +10,10 @@ Have some containerization installed (Docker, Podman, ...)
   - OR
   - Flask (mature) `docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate -i /local/openapi.yml -g python-flask -o /local/src`
 3) Implement the stubbed controller functions in `src/openapi_server/controllers/*.py`
+4) Build and run the Microservice as container:
+  - `cd src`
+  - `docker build -t cv-backend .`
+  - `docker run -p 8080:8080 cv-backend`
+  - Open [http://localhost:8080/ui/](http://localhost:8080/ui/) in a WebBrowser
+  - Test API endpoint, e.g. `curl -o john_doe_cv.pdf "http://localhost:8080/cv?firstName=John&lastName=Doe"`
 
