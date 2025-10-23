@@ -22,3 +22,20 @@ Have some containerization installed (Docker, Podman, ...)
   - `docker run --rm -v "$PWD/ts-client":/app -w /app node:latest bash -c "npm install && npm run build || true && npm pack"`
   - Distribute `ts-client/dubhar-cv-client-0.1.0.tgz` i.e. via Package Registry
 
+# Steps to setup a Client:
+
+1) Install the provided, version specific package:
+  - `npm install ~/Downloads/cv-client-0.1.0.tgz`
+2) Use the package to access Microservice:
+  ```TypeScript
+  import { Configuration, CvApi, HealthApi } from "cv-client";
+
+  const config = new Configuration({ basePath: "http://localhost:8080" });
+
+  const cvApi = new CvApi(config);
+  const healthApi = new HealthApi(config);
+
+  await healthApi.getHealth();
+  const pdf = await cvApi.getCv({ firstname: "John", lastname: "Doe" });
+  ```
+
