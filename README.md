@@ -16,4 +16,5 @@ Have some containerization installed (Docker, Podman, ...)
   - `docker run -p 8080:8080 cv-backend`
   - Open [http://localhost:8080/ui/](http://localhost:8080/ui/) in a WebBrowser
   - Test API endpoint, e.g. `curl -o john_doe_cv.pdf "http://localhost:8080/cv?firstName=John&lastName=Doe"`
-
+5) Generate client code:
+  - `docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate -i /local/openapi.yml -g typescript-fetch -o /local/ts-client --additional-properties="supportsES6=true,npmName=@dubhar/cv-client,npmVersion=0.1.0,typescriptThreePlus=true,useSingleRequestParameter=true"`

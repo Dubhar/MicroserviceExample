@@ -1,0 +1,15 @@
+.gitignore
+.npmignore
+.openapi-generator-ignore
+README.md
+docs/CvApi.md
+docs/CvGet404Response.md
+package.json
+src/apis/CvApi.ts
+src/apis/index.ts
+src/index.ts
+src/models/CvGet404Response.ts
+src/models/index.ts
+src/runtime.ts
+tsconfig.esm.json
+tsconfig.json
