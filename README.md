@@ -18,3 +18,7 @@ Have some containerization installed (Docker, Podman, ...)
   - Test API endpoint, e.g. `curl -o john_doe_cv.pdf "http://localhost:8080/cv?firstName=John&lastName=Doe"`
 5) Generate client code:
   - `docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate -i /local/openapi.yml -g typescript-fetch -o /local/ts-client --additional-properties="supportsES6=true,npmName=@dubhar/cv-client,npmVersion=0.1.0,typescriptThreePlus=true,useSingleRequestParameter=true"`
+6) Pack client code as package and provide to actual clients
+  - `docker run --rm -v "$PWD/ts-client":/app -w /app node:latest bash -c "npm install && npm run build || true && npm pack"`
+  - Distribute `ts-client/dubhar-cv-client-0.1.0.tgz` i.e. via Package Registry
+
