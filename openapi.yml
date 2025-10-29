@@ -1,29 +1,34 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   title: CV Download Service
-  version: 1.0.0
+  version: 1.0.1
   description: Simple API to download a CV PDF for a person identified by first and last name.
 
 paths:
   /cv:
-    get:
+    post:
       tags:
         - cv
       summary: Download CV PDF
       description: Returns the CV of the person matching the given first and last name as a PDF file.
-      parameters:
-        - name: firstName
-          in: query
-          description: Person's first name
-          required: true
-          schema:
-            type: string
-        - name: lastName
-          in: query
-          description: Person's last name
-          required: true
-          schema:
-            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  description: Person's first name
+                  example: John
+                lastName:
+                  type: string
+                  description: Person's last name
+                  example: Doe
+              required:
+                - firstName
+                - lastName
       responses:
         "200":
           description: CV PDF file
@@ -42,4 +47,3 @@ paths:
                   error:
                     type: string
                     example: "CV not found for John Doe"
-
