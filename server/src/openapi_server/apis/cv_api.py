@@ -39,16 +39,16 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
 @router.post(
     "/cv",
     responses={
-        200: {"model": file, "description": "CV PDF file"},
+        200: {"description": "CV PDF file"},
         404: {"model": CvPost404Response, "description": "CV not found"},
     },
     tags=["cv"],
     summary="Download CV PDF",
-    response_model_by_alias=True,
+    response_model=None,
 )
 async def cv_post(
-    cv_post_request: CvPostRequest = Body(None, description=""),
-) -> file:
+    cv_post_request: CvPostRequest = Body(..., description=""),
+) -> Response:
     """Returns the CV of the person matching the given first and last name as a PDF file."""
     if not BaseCvApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")

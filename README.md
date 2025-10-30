@@ -10,10 +10,8 @@ Have some containerization installed (Docker, Podman, ...)
 3) Implement the stubbed controller functions in `server/src/openapi_server/impl/${TAG}_api_impl.py`
 4) Build and run the Microservice as container:
   - `cd server`
-  - `docker build -t cv-backend .`
-  - `docker run -p 8080:8080 cv-backend`
-  - Open [http://localhost:8080/ui/](http://localhost:8080/ui/) in a WebBrowser
-  - Test API endpoint, e.g. `curl -X POST "http://localhost:8000/cv" -H "Content-Type: application/json" -o cv.pdf -d '{"firstName":"John","lastName":"Doe"}'`
+  - `docker compose up`
+  - Test API endpoint, e.g. `curl -X POST "http://localhost:8080/cv" -H "Content-Type: application/json" -o cv.pdf -d '{"firstName":"John","lastName":"Doe"}'`
 5) Generate client code:
   - `docker run --rm -u $(id -u):$(id -g) -v "${PWD}:/local" openapitools/openapi-generator-cli generate -i /local/openapi.yml -g typescript-fetch -o /local/ts-client --additional-properties="supportsES6=true,npmName=@dubhar/cv-client,npmVersion=0.1.0,typescriptThreePlus=true,useSingleRequestParameter=true"`
 6) Pack client code as package and provide to actual clients

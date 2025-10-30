@@ -2,6 +2,7 @@
 
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
+from fastapi import Response
 from pydantic import StrictBytes, StrictStr
 from typing import Tuple, Union
 from openapi_server.models.cv_post404_response import CvPost404Response
@@ -17,6 +18,6 @@ class BaseCvApi:
     async def cv_post(
         self,
         cv_post_request: CvPostRequest,
-    ) -> file:
+    ) -> Response:
         """Returns the CV of the person matching the given first and last name as a PDF file."""
         ...

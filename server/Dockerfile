@@ -1,4 +1,4 @@
-FROM python:3.7 AS builder
+FROM python:3.13 AS builder
 
 WORKDIR /usr/src/app
 
@@ -11,7 +11,8 @@ COPY . .
 RUN pip install --no-cache-dir .
 
 
-FROM python:3.7 AS service
+FROM python:3.13 AS service
 WORKDIR /root/app/site-packages
 COPY --from=builder /venv /venv
+COPY Google.pdf /root/app/Google.pdf
 ENV PATH=/venv/bin:$PATH
